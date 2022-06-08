@@ -9,6 +9,12 @@ PROJECT_NAME = {{ cookiecutter.repo_name }}
 MODULE_NAME = {{ cookiecutter.module_name }}
 PYTHON_VERSION = {{ cookiecutter.python_ver }}
 
+{% if cookiecutter.shared_project %}
+STORE_DIR = {{ cookiecutter.shared_project_path }}
+{% else %}
+STORE_DIR = "."
+{% endif %}
+
 #################################################################################
 # COMMANDS                                                                      #
 #################################################################################
@@ -20,7 +26,7 @@ requirements:
 
 ## Make Dataset
 data: requirements
-	python src/data/make_dataset.py data/raw data/processed
+	python src/data/make_dataset.py $(STORE_DIR)/data/raw $(STORE_DIR)/data/processed
 
 ## Delete all compiled Python files
 clean:
