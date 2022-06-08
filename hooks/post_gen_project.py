@@ -7,12 +7,9 @@ def remove_local_data():
 
 
 def create_shared_folder():
-    os.mkdir("{{ cookiecutter.shared_project_path }}")
-    os.mkdir(os.path.join("{{ cookiecutter.shared_project_path }}", 'data'))
-
     to_add = ['raw', 'interim', 'processed']
     for name in to_add:
-        os.mkdir(
+        os.makedirs(
             os.path.join(
                 "{{ cookiecutter.shared_project_path }}", 'data', name))
 
